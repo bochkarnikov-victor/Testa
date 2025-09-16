@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ContractsInterfaces.Infrastructure;
 using ContractsInterfaces.UseCasesGameplay;
 using Domain.Gameplay.MessagesDTO;
 using MessagePipe;
@@ -26,6 +27,7 @@ namespace Presentation.Gameplay.Presenters
         [Inject] private readonly ISubscriber<BuildingRemovedEvent> _removalSubscriber;
         [Inject] private readonly ISubscriber<GameStateLoadedEvent> _loadSubscriber;
         [Inject] private readonly IBuildingConfig[] _buildingConfigs;
+        [Inject] private readonly IGridCoordinatesConverter _coordinatesConverter;
 
         private readonly Dictionary<Guid, GameObject> _spawnedBuildings = new();
         private readonly CompositeDisposable _disposables = new();
@@ -58,7 +60,7 @@ namespace Presentation.Gameplay.Presenters
                 return;
             }
 
-            Vector3 worldPos = new(e.Position.X, 0, e.Position.Y);
+            Vector3 worldPos = this._coordinatesConverter.GridToWorld(e.Position);
             GameObject? buildingInstance = UnityEngine.Object.Instantiate(config.Prefab, worldPos, Quaternion.identity);
 
             this._spawnedBuildings[e.BuildingId] = buildingInstance;

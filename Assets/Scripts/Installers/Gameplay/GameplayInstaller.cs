@@ -87,6 +87,7 @@ namespace Installers.Gameplay
             builder.RegisterMessageBroker<BuildingRemovedEvent>(options);
             builder.RegisterMessageBroker<BuildingMovedEvent>(options);
             builder.RegisterMessageBroker<BuildingPlacementFailure>(options);
+            builder.RegisterMessageBroker<BuildingPlacementSuccess>(options);
             builder.RegisterMessageBroker<BuildingUpgradedEvent>(options);
             builder.RegisterMessageBroker<BuildingSelectedEvent>(options);
             builder.RegisterMessageBroker<BuildingType>(options);
@@ -98,7 +99,7 @@ namespace Installers.Gameplay
         private void ConfigureInfrastructure(IContainerBuilder builder)
         {
             builder.RegisterInstance(this._mainCamera);
-            builder.Register<IGridCoordinatesConverter, GridCoordinatesConverter>(Lifetime.Singleton);
+            builder.RegisterInstance<IGridCoordinatesConverter>(new GridCoordinatesConverter(this._mainCamera, this._gridView.Width, this._gridView.Height));
             builder.RegisterInstance(this._inputActions);
             builder.Register<InputService>(Lifetime.Singleton).As<IInputService, IInitializable>();
             builder.Register<IGameStateRepository, GameStateRepository>(Lifetime.Singleton);
@@ -107,7 +108,7 @@ namespace Installers.Gameplay
         private void ConfigureDomainAndRepositories(IContainerBuilder builder)
         {
             // --- Domain Models ---
-            builder.Register(_ => new CityGridModel(32, 32), Lifetime.Singleton);
+            builder.Register(_ => new CityGridModel(this._gridView.Width, this._gridView.Height), Lifetime.Singleton);
             builder.Register(container =>
             {
                 Dictionary<ResourceType, int> startingResources = new()
@@ -145,6 +146,8 @@ namespace Installers.Gameplay
         {
             builder.RegisterComponent(this._gridView);
             builder.RegisterComponent(this._buildingGhostView);
+
+            builder.Register<BuildingSpawner>(Lifetime.Singleton).As<IInitializable>();
 
             builder.RegisterComponent(this._hudView).As<IHudView>();
             builder.Register<HudPresenter>(Lifetime.Singleton).As<IStartable>();

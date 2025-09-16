@@ -3,6 +3,7 @@
 using System;
 using ContractsInterfaces.Infrastructure;
 using R3;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer.Unity;
 using NVec2 = System.Numerics.Vector2;
@@ -30,50 +31,33 @@ namespace Infrastructure
         private readonly InputAction _select3Action;
         private readonly InputAction _pointerPositionAction;
 
-        // === Reactive Properties ===
-        private readonly ReactiveProperty<Unit> _onDeleteBuildingPressed = new();
+        // === Subjects for events ===
+        private readonly Subject<Unit> _onDeleteBuildingPressed = new();
+        public Observable<Unit> OnDeleteBuildingPressed => this._onDeleteBuildingPressed.AsObservable();
 
-        /// <inheritdoc/>
-        public ReadOnlyReactiveProperty<Unit> OnDeleteBuildingPressed => this._onDeleteBuildingPressed;
+        private readonly Subject<Unit> _onPlace = new();
+        public Observable<Unit> OnPlace => this._onPlace.AsObservable();
 
+        private readonly Subject<Unit> _onRotate = new();
+        public Observable<Unit> OnRotate => this._onRotate.AsObservable();
+
+        private readonly Subject<Unit> _onCancel = new();
+        public Observable<Unit> OnCancel => this._onCancel.AsObservable();
+
+        // === Reactive Properties for state ===
         private readonly ReactiveProperty<NVec2> _moveCameraDirection = new();
-
-        /// <inheritdoc/>
         public ReadOnlyReactiveProperty<NVec2> MoveCameraDirection => this._moveCameraDirection;
 
-        private readonly ReactiveProperty<Unit> _onPlace = new();
-
-        /// <inheritdoc/>
-        public ReadOnlyReactiveProperty<Unit> OnPlace => this._onPlace;
-
-        private readonly ReactiveProperty<Unit> _onRotate = new();
-
-        /// <inheritdoc/>
-        public ReadOnlyReactiveProperty<Unit> OnRotate => this._onRotate;
-
-        private readonly ReactiveProperty<Unit> _onCancel = new();
-
-        /// <inheritdoc/>
-        public ReadOnlyReactiveProperty<Unit> OnCancel => this._onCancel;
-
         private readonly ReactiveProperty<int> _onSelectBuildingRequested = new(-1);
-
-        /// <inheritdoc/>
         public ReadOnlyReactiveProperty<int> OnSelectBuildingRequested => this._onSelectBuildingRequested;
 
         private readonly ReactiveProperty<NVec2> _cameraDragDelta = new();
-
-        /// <inheritdoc/>
         public ReadOnlyReactiveProperty<NVec2> CameraDragDelta => this._cameraDragDelta;
 
         private readonly ReactiveProperty<float> _cameraZoomDelta = new();
-
-        /// <inheritdoc/>
         public ReadOnlyReactiveProperty<float> CameraZoomDelta => this._cameraZoomDelta;
 
         private readonly ReactiveProperty<NVec2> _pointerPosition = new();
-
-        /// <inheritdoc/>
         public ReadOnlyReactiveProperty<NVec2> PointerPosition => this._pointerPosition;
 
         private bool _isRightMouseHeld;
@@ -168,22 +152,22 @@ namespace Infrastructure
 
         private void OnPlacePerformed(InputAction.CallbackContext _)
         {
-            this._onPlace.Value = Unit.Default;
+            this._onPlace.OnNext(Unit.Default);
         }
 
         private void OnRotatePerformed(InputAction.CallbackContext _)
         {
-            this._onRotate.Value = Unit.Default;
+            this._onRotate.OnNext(Unit.Default);
         }
 
         private void OnDeleteBuildingPerformed(InputAction.CallbackContext _)
         {
-            this._onDeleteBuildingPressed.Value = Unit.Default;
+            this._onDeleteBuildingPressed.OnNext(Unit.Default);
         }
 
         private void OnCancelPerformed(InputAction.CallbackContext _)
         {
-            this._onCancel.Value = Unit.Default;
+            this._onCancel.OnNext(Unit.Default);
         }
 
         private void OnSelect1Performed(InputAction.CallbackContext _)

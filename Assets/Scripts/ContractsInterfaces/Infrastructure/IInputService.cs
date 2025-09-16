@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using R3;
 using System.Numerics;
 
@@ -12,16 +13,16 @@ namespace ContractsInterfaces.Infrastructure
     {
         // Общие действия
         /// <summary>Событие, вызываемое при нажатии кнопки удаления здания.</summary>
-        ReadOnlyReactiveProperty<Unit> OnDeleteBuildingPressed { get; }
+        Observable<Unit> OnDeleteBuildingPressed { get; }
 
         /// <summary>Событие, вызываемое при нажатии кнопки размещения/основного действия.</summary>
-        ReadOnlyReactiveProperty<Unit> OnPlace { get; }
+        Observable<Unit> OnPlace { get; }
 
         /// <summary>Событие, вызываемое при нажатии кнопки вращения.</summary>
-        ReadOnlyReactiveProperty<Unit> OnRotate { get; }
+        Observable<Unit> OnRotate { get; }
 
         /// <summary>Событие, вызываемое при нажатии кнопки отмены/выхода.</summary>
-        ReadOnlyReactiveProperty<Unit> OnCancel { get; }
+        Observable<Unit> OnCancel { get; }
 
         /// <summary>Событие, анонсирующее выбор типа здания по горячей клавише (1, 2, 3).</summary>
         ReadOnlyReactiveProperty<int> OnSelectBuildingRequested { get; }

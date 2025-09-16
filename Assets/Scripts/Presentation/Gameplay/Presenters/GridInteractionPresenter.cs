@@ -64,6 +64,7 @@ namespace Presentation.Gameplay.Presenters
 
         private void EnterBuildMode(BuildingType buildingType)
         {
+            Debug.Log("Place");
             if (buildingType == BuildingType.None)
             {
                 return;
@@ -163,7 +164,7 @@ namespace Presentation.Gameplay.Presenters
                 if (this._currentBuildingConfig != null)
                 {
                     this._ghostView.Show(this._currentBuildingConfig.Prefab);
-                    Vector3 worldPos = new(gridPos.X, 0, gridPos.Y);
+                    Vector3 worldPos = this._coordinatesConverter.GridToWorld(gridPos);
                     this._ghostView.SetPosition(worldPos);
                     this._ghostView.SetColor(highlightColor);
                 }

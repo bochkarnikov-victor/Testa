@@ -16,6 +16,9 @@ namespace Presentation.Gameplay.Views
         [SerializeField] private float _cellSize = 1.0f;
         [SerializeField] private Color _gridColor = Color.gray;
 
+        public int Width => _width;
+        public int Height => _height;
+
         private GridPos? _highlightedCell;
         private Color _highlightColor;
 
@@ -74,9 +77,15 @@ namespace Presentation.Gameplay.Views
             {
                 Gizmos.color = this._highlightColor;
                 var pos = this._highlightedCell.Value;
+
+                float halfWidth = this._width / 2f * this._cellSize;
+                float halfHeight = this._height / 2f * this._cellSize;
                 
                 // Центр клетки в мировых координатах (Y в GridPos соответствует Z в мире)
-                var center = new Vector3(pos.X * this._cellSize, 0.05f, pos.Y * this._cellSize);
+                var center = new Vector3(
+                    pos.X * this._cellSize - halfWidth + this._cellSize * 0.5f, 
+                    0.05f, 
+                    pos.Y * this._cellSize - halfHeight + this._cellSize * 0.5f);
                 
                 Gizmos.DrawCube(center, new Vector3(this._cellSize, 0.01f, this._cellSize));
             }

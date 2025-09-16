@@ -13,11 +13,15 @@ namespace Infrastructure
     public class GridCoordinatesConverter : IGridCoordinatesConverter
     {
         private readonly Camera _mainCamera;
+        private readonly int _width;
+        private readonly int _height;
         private const float CellSize = 1.0f;
 
-        public GridCoordinatesConverter(Camera mainCamera)
+        public GridCoordinatesConverter(Camera mainCamera, int width, int height)
         {
             this._mainCamera = mainCamera;
+            this._width = width;
+            this._height = height;
         }
 
         /// <inheritdoc/>
@@ -32,14 +36,29 @@ namespace Infrastructure
             if (groundPlane.Raycast(ray, out float enter))
             {
                 Vector3 worldPoint = ray.GetPoint(enter);
-                
-                int x = Mathf.RoundToInt(worldPoint.x / CellSize);
-                int z = Mathf.RoundToInt(worldPoint.z / CellSize);
+
+                float halfWidth = this._width / 2f * CellSize;
+                float halfHeight = this._height / 2f * CellSize;
+
+                int x = Mathf.FloorToInt((worldPoint.x + halfWidth) / CellSize);
+                int z = Mathf.FloorToInt((worldPoint.z + halfHeight) / CellSize);
 
                 return new GridPos(x, z);
             }
 
             return new GridPos(int.MinValue, int.MinValue);
+        }
+
+        /// <inheritdoc/>
+        public Vector3 GridToWorld(GridPos gridPos)
+        {
+            float halfWidth = this._width / 2f * CellSize;
+            float halfHeight = this._height / 2f * CellSize;
+
+            return new Vector3(
+                gridPos.X * CellSize - halfWidth + CellSize * 0.5f,
+                0,
+                gridPos.Y * CellSize - halfHeight + CellSize * 0.5f);
         }
     }
 }
