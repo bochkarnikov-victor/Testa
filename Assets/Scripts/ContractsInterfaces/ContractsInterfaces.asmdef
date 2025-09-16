@@ -1,0 +1,19 @@
+{
+  "name": "ContractsInterfaces",
+  "rootNamespace": "ContractsInterfaces",
+  "references": [
+    "UniTask",
+    "Domain.Gameplay",
+    "Domain.Application",
+    "UnityEngine.UI"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

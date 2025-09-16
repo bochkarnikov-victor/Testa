@@ -1,0 +1,23 @@
+{
+    "name": "Presentation.Gameplay",
+    "rootNamespace": "Presentation.Gameplay",
+    "references": [
+        "UseCases.Gameplay",
+        "Domain.Gameplay",
+        "VContainer",
+        "MessagePipe",
+        "UniTask",
+        "Unity.InputSystem",
+        "ContractsInterfaces",
+        "Utilities"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

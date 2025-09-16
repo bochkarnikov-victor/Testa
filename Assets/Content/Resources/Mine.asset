@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6117d124c06974347a3d73b14375a7df, type: 3}
+  m_Name: Mine
+  m_EditorClassIdentifier: 
+  <BuildingType>k__BackingField: 3
+  _displayName: Mine
+  _sprite: {fileID: 21300000, guid: 536cb853e99e8a540a3c31220d0cb4e1, type: 3}
+  _prefab: {fileID: 4276347709558288895, guid: 874551ac8a2a0364fb5630155a5a0492, type: 3}
+  _levels:
+  - _costAuthoring:
+    - Type: 1
+      Amount: 50
+    - Type: 2
+      Amount: 20
+    _incomeAuthoring:
+    - Type: 3
+      Amount: 2
+  - _costAuthoring:
+    - Type: 1
+      Amount: 100
+    - Type: 2
+      Amount: 30
+    _incomeAuthoring:
+    - Type: 3
+      Amount: 5
+  - _costAuthoring:
+    - Type: 1
+      Amount: 200
+    - Type: 2
+      Amount: 50
+    _incomeAuthoring:
+    - Type: 3
+      Amount: 15

@@ -1,0 +1,21 @@
+﻿{
+  "name": "Infrastructure",
+  "rootNamespace": "Infrastructure",
+  "references": [
+    "ContractsInterfaces",
+    "VContainer",
+    "UniTask",
+    "Serilog",
+    "Unity.InputSystem",
+    "Domain.Gameplay"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

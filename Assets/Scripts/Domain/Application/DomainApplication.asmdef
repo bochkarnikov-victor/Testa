@@ -1,0 +1,17 @@
+{
+  "name": "DomainApplication",
+  "rootNamespace": "",
+  "references": [
+    "GUID:ea9ea70950dc9d345b3289972c2524bc",
+    "GUID:054ed1ae78884984995e33a1f4fa8dfa"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

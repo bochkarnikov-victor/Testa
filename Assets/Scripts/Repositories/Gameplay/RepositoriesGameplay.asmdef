@@ -1,0 +1,19 @@
+{
+  "name": "Repositories.Gameplay",
+  "rootNamespace": "Repositories.Gameplay",
+  "references": [
+    "Domain.Gameplay",
+    "VContainer",
+    "ContractsInterfaces",
+    "DomainApplication"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

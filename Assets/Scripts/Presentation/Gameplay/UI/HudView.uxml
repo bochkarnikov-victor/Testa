@@ -1,0 +1,22 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="Resources" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.59); height: 15px; max-height: 15%; flex-direction: row; color: rgb(255, 255, 255); -unity-text-align: upper-center; justify-content: center; align-items: auto; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; flex-direction: row; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+                <ui:Label text="Gold" name="Label" />
+                <ui:Label text="Label" name="Gold" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; flex-direction: row; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+                <ui:Label text="Wood" name="Label" />
+                <ui:Label text="Label" name="Wood" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; align-items: center; justify-content: center; flex-direction: row; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px;">
+                <ui:Label text="Crystals" name="Label" />
+                <ui:Label text="Label" name="Crystals" />
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-direction: row; margin-left: auto; align-items: center; padding-right: 10px;">
+                <ui:Button name="save-button" text="Сохранить" style="margin-right: 5px;" />
+                <ui:Button name="load-button" text="Загрузить" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

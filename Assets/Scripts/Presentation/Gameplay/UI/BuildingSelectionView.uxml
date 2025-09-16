@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement name="BuildingSelection"
+                      style="flex-direction: row; justify-content: center; align-items: center; background-color: rgba(0,0,0,0.5); padding: 10px;">
+
+        <ui:Button name="House" class="selection-button">
+            <ui:Image name="HouseSprite" class="selection-sprite" style="width: 100px; height: 100px;"/>
+            <ui:Label text="Дом" class="selection-label"/>
+        </ui:Button>
+
+        <ui:Button name="Farm" class="selection-button">
+            <ui:Image name="FarmSprite" class="selection-sprite" style="width: 100px; height: 100px;"/>
+            <ui:Label text="Ферма" class="selection-label"/>
+        </ui:Button>
+
+        <ui:Button name="Mine" class="selection-button">
+            <ui:Image name="MineSprite" class="selection-sprite" style="width: 100px; height: 100px;"/>
+            <ui:Label text="Шахта" class="selection-label"/>
+        </ui:Button>
+
+    </ui:VisualElement>
+</ui:UXML>

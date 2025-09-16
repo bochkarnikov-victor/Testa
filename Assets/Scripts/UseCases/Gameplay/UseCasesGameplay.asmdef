@@ -1,0 +1,21 @@
+{
+    "name": "UseCases.Gameplay",
+    "rootNamespace": "UseCases.Gameplay",
+    "references": [
+        "ContractsInterfaces",
+        "Domain.Gameplay",
+        "VContainer",
+        "MessagePipe",
+        "UniTask",
+        "Repositories.Gameplay"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

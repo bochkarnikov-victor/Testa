@@ -1,0 +1,27 @@
+{
+    "name": "Installers.Gameplay",
+    "rootNamespace": "Installers.Gameplay",
+    "references": [
+        "Domain.Gameplay",
+        "Repositories.Gameplay",
+        "UseCases.Gameplay",
+        "VContainer",
+        "MessagePipe",
+        "MessagePipe.VContainer",
+        "ContractsInterfaces",
+        "Infrastructure",
+        "Presentation.Gameplay",
+        "Unity.InputSystem",
+        "Serilog.Sinks.Unity3D",
+        "DomainApplication"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
