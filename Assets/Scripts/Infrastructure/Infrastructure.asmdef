@@ -7,7 +7,8 @@
     "UniTask",
     "Serilog",
     "Unity.InputSystem",
-    "Domain.Gameplay"
+    "Domain.Gameplay",
+    "Presentation.Gameplay"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],

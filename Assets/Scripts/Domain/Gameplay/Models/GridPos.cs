@@ -7,17 +7,18 @@ namespace Domain.Gameplay.Models
     /// <summary>
     /// Представляет позицию на игровой сетке.
     /// </summary>
-    public readonly struct GridPos : IEquatable<GridPos>
+    [Serializable]
+    public struct GridPos : IEquatable<GridPos>
     {
         /// <summary>
         /// Координата X.
         /// </summary>
-        public int X { get; }
+        public int X;
 
         /// <summary>
         /// Координата Y.
         /// </summary>
-        public int Y { get; }
+        public int Y;
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="GridPos"/>.

@@ -1,6 +1,7 @@
 #nullable enable
 
 using System.Collections.Generic;
+using ContractsInterfaces.UseCasesGameplay;
 using ContractsInterfaces.ViewsGameplay;
 using Domain.Gameplay.MessagesDTO;
 using Domain.Gameplay.Models;
@@ -18,6 +19,7 @@ namespace Presentation.Gameplay.Presenters
         private readonly ISubscriber<ResourcesChangedEvent> _resourcesChangedSubscriber;
         private readonly IAsyncRequestHandler<SaveGameCommand, Unit> _saveGameHandler;
         private readonly IAsyncRequestHandler<LoadGameCommand, Unit> _loadGameHandler;
+        private readonly IResourceQueries _resourceQueries;
 
         private readonly CompositeDisposable _disposables = new();
 
@@ -25,11 +27,13 @@ namespace Presentation.Gameplay.Presenters
         public HudPresenter(
             ISubscriber<ResourcesChangedEvent> resourcesChangedSubscriber,
             IAsyncRequestHandler<SaveGameCommand, Unit> saveGameHandler,
-            IAsyncRequestHandler<LoadGameCommand, Unit> loadGameHandler)
+            IAsyncRequestHandler<LoadGameCommand, Unit> loadGameHandler,
+            IResourceQueries resourceQueries)
         {
             this._resourcesChangedSubscriber = resourcesChangedSubscriber;
             this._saveGameHandler = saveGameHandler;
             this._loadGameHandler = loadGameHandler;
+            this._resourceQueries = resourceQueries;
         }
 
         /// <inheritdoc/>
@@ -37,6 +41,13 @@ namespace Presentation.Gameplay.Presenters
         {
             base.Start();
             this.LayoutView.Show();
+
+            // Отображаем начальные ресурсы
+            IReadOnlyDictionary<ResourceType, int> initialResources = this._resourceQueries.GetCurrentResources();
+            foreach (KeyValuePair<ResourceType, int> resource in initialResources)
+            {
+                this.LayoutView.UpdateResource(resource.Key, resource.Value);
+            }
 
             this._resourcesChangedSubscriber
                 .Subscribe(e =>

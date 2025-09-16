@@ -2,6 +2,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Domain.Gameplay.Models
 {
@@ -105,6 +107,29 @@ namespace Domain.Gameplay.Models
             }
 
             return new Income(result);
+        }
+        
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            if (_resourceIncomes == null || _resourceIncomes.Count == 0)
+            {
+                return "{ Empty }";
+            }
+
+            var sb = new StringBuilder("{ ");
+            foreach (var kvp in _resourceIncomes)
+            {
+                sb.Append(kvp.Key).Append(": ").Append(kvp.Value).Append(", ");
+            }
+            // Удаляем последнюю запятую и пробел
+            if (sb.Length > 2)
+            {
+                sb.Length -= 2;
+            }
+            
+            sb.Append(" }");
+            return sb.ToString();
         }
     }
 }

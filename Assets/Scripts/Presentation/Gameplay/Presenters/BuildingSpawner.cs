@@ -94,7 +94,7 @@ namespace Presentation.Gameplay.Presenters
             foreach (BuildingStateDTO buildingState in e.GameState.Buildings)
             {
                 BuildingPlacementSuccess successEvent =
-                    new(buildingState.Id, buildingState.Type, buildingState.Position);
+                    new(new Guid(buildingState.Id), buildingState.Type, buildingState.Position);
                 this.OnBuildingPlaced(successEvent);
             }
         }

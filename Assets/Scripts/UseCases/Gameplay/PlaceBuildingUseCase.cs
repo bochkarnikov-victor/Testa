@@ -117,6 +117,7 @@ namespace UseCases.Gameplay
                 Income refundIncome =
                     new(level1Cost.GetResourceTypes().ToDictionary(rt => rt, rt => level1Cost.GetCost(rt)));
                 this._resourceActions.Earn(refundIncome);
+                
                 this._failurePublisher.Publish(new BuildingPlacementFailure(PlacementFailureReason.Unknown));
             }
 

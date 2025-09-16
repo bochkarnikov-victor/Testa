@@ -1,0 +1,128 @@
+﻿Scripts/
+├── ContractsInterfaces/
+│   ├── DomainGameplay/
+│   │   └── IPlayerResourcesModel.cs
+│   ├── Infrastructure/
+│   │   ├── IGameStateRepository.cs
+│   │   ├── IGridCoordinatesConverter.cs
+│   │   └── IInputService.cs
+│   ├── PresentersGameplay/
+│   │   └── ILayoutPresenter.cs
+│   ├── UseCasesApplication/
+│   ├── UseCasesGameplay/
+│   │   ├── IBuildingConfig.cs
+│   │   ├── IBuildingLevelData.cs
+│   │   ├── ICityGridRepository.cs
+│   │   ├── IPlayerResourcesRepository.cs
+│   │   ├── IResourceActions.cs
+│   │   └── IResourceQueries.cs
+│   ├── ViewsApplication/
+│   │   └── ILayoutView.cs
+│   ├── ViewsGameplay/
+│   │   ├── IBuildingPropertiesView.cs
+│   │   ├── IBuildingSelectionView.cs
+│   │   └── IHudView.cs
+│   └── ContractsInterfaces.asmdef
+├── Domain/
+│   ├── Application/
+│   │   ├── Models/
+│   │   │   └── PlayerResourcesModel.cs
+│   │   └── DomainApplication.asmdef
+│   └── Gameplay/
+│       ├── MessagesDTO/
+│       │   ├── BuildingMovedEvent.cs
+│       │   ├── BuildingPlacementFailure.cs
+│       │   ├── BuildingPlacementSuccess.cs
+│       │   ├── BuildingRemovedEvent.cs
+│       │   ├── BuildingRemoveFailure.cs
+│       │   ├── BuildingSelectedEvent.cs
+│       │   ├── BuildingStateDTO.cs
+│       │   ├── BuildingUpgradedEvent.cs
+│       │   ├── BuildingUpgradeFailure.cs
+│       │   ├── GameSavedEvent.cs
+│       │   ├── GameStateDTO.cs
+│       │   ├── GameStateLoadedEvent.cs
+│       │   ├── LoadGameCommand.cs
+│       │   ├── MoveBuildingRequest.cs
+│       │   ├── NotEnoughResourcesEvent.cs
+│       │   ├── PlaceBuildingRequest.cs
+│       │   ├── RemoveBuildingRequest.cs
+│       │   ├── ResourceAmount.cs
+│       │   ├── ResourcesChangedEvent.cs
+│       │   ├── SaveGameCommand.cs
+│       │   └── UpgradeBuildingRequest.cs
+│       ├── Models/
+│       │   ├── BuildingLevel.cs
+│       │   ├── BuildingModel.cs
+│       │   ├── BuildingModelBase.cs
+│       │   ├── BuildingProcessStatus.cs
+│       │   ├── BuildingType.cs
+│       │   ├── CityGridModel.cs
+│       │   ├── Cost.cs
+│       │   ├── GridPos.cs
+│       │   ├── Income.cs
+│       │   └── ResourceType.cs
+│       ├── Tests/
+│       │   ├── BuildingLevelTests.cs
+│       │   ├── BuildingModelTests.cs
+│       │   ├── BuildingProcessStatusTests.cs
+│       │   ├── BuildingTypeTests.cs
+│       │   ├── CityGridModelTests.cs
+│       │   ├── CostTests.cs
+│       │   ├── GridPosTests.cs
+│       │   ├── IncomeTests.cs
+│       │   └── ResourceTypeTests.cs
+│       └── DomainGameplay.asmdef
+├── Infrastructure/
+│   ├── GameStateRepository.cs
+│   ├── GridCoordinatesConverter.cs
+│   ├── Infrastructure.asmdef
+│   └── InputService.cs
+├── Installers/
+│   └── Gameplay/
+│       ├── GameplayInstaller.cs
+│       └── Installers.Gameplay.asmdef
+├── Presentation/
+│   └── Gameplay/
+│       ├── Presenters/
+│       │   ├── BuildingPropertiesPresenter.cs
+│       │   ├── BuildingSelectionPresenter.cs
+│       │   ├── BuildingSpawner.cs
+│       │   ├── GridInteractionPresenter.cs
+│       │   ├── HudPresenter.cs
+│       │   └── LayoutPresenterBase.cs
+│       ├── UI/
+│       │   ├── BuildingPropertiesView.uxml
+│       │   ├── BuildingSelectionView.uxml
+│       │   └── HudView.uxml
+│       ├── Views/
+│       │   ├── BuildingGhostView.cs
+│       │   ├── BuildingPropertiesView.cs
+│       │   ├── BuildingSelectionView.cs
+│       │   ├── GridView.cs
+│       │   ├── HudView.cs
+│       │   └── LayoutViewBase.cs
+│       └── PresentationGameplay.asmdef
+├── Repositories/
+│   └── Gameplay/
+│       ├── BuildingLevelConfig.cs
+│       ├── BuildingRepository.cs
+│       ├── CityGridRepository.cs
+│       ├── PlayerResourcesRepository.cs
+│       └── RepositoriesGameplay.asmdef
+├── UseCases/
+│   └── Gameplay/
+│       ├── AutosaveService.cs
+│       ├── EconomyService.cs
+│       ├── LoadGameUseCase.cs
+│       ├── MoveBuildingUseCase.cs
+│       ├── PlaceBuildingUseCase.cs
+│       ├── RemoveBuildingUseCase.cs
+│       ├── ResourceManagerUseCase.cs
+│       ├── SaveGameUseCase.cs
+│       ├── UpgradeBuildingUseCase.cs
+│       └── UseCasesGameplay.asmdef
+├── Utilities/
+│   ├── UIToolkitRxExtensions.cs
+│   └── Utilities.asmdef
+└── PROJECT_STRUCTURE.txt

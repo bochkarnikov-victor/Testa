@@ -99,7 +99,7 @@ namespace Installers.Gameplay
         private void ConfigureInfrastructure(IContainerBuilder builder)
         {
             builder.RegisterInstance(this._mainCamera);
-            builder.RegisterInstance<IGridCoordinatesConverter>(new GridCoordinatesConverter(this._mainCamera, this._gridView.Width, this._gridView.Height));
+            builder.RegisterInstance<IGridCoordinatesConverter>(new GridCoordinatesConverter(this._mainCamera, this._gridView));
             builder.RegisterInstance(this._inputActions);
             builder.Register<InputService>(Lifetime.Singleton).As<IInputService, IInitializable>();
             builder.Register<IGameStateRepository, GameStateRepository>(Lifetime.Singleton);

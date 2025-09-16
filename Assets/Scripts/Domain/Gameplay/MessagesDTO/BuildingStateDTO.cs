@@ -12,7 +12,7 @@ namespace Domain.Gameplay.MessagesDTO
         /// <summary>
         /// Уникальный идентификатор здания.
         /// </summary>
-        public Guid Id;
+        public string Id;
 
         /// <summary>
         /// Тип здания.

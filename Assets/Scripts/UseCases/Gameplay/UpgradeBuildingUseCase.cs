@@ -50,7 +50,7 @@ namespace UseCases.Gameplay
                 this._logger.Warning("[UpgradeBuildingUseCase.Invoke] Building with ID {BuildingId} not found. Cannot upgrade.", request.BuildingId);
                 return Unit.Default;
             }
-
+            
             if (building.CurrentLevel.CurrentValue >= building.Levels.Count)
             {
                 this._logger.Warning("[UpgradeBuildingUseCase.Invoke] Building {BuildingId} is already at max level {MaxLevel}. Cannot upgrade.",
@@ -59,14 +59,13 @@ namespace UseCases.Gameplay
             }
 
             Cost upgradeCost = building.Levels[building.CurrentLevel.CurrentValue].Cost;
-
             if (!this._resourceActions.HasEnough(upgradeCost))
             {
                 this._logger.Warning("[UpgradeBuildingUseCase.Invoke] Not enough resources to upgrade building {BuildingId}. Required: {Cost}",
                     request.BuildingId, upgradeCost);
                 return Unit.Default;
             }
-
+            
             this._resourceActions.Spend(upgradeCost);
 
             if (building.TryUpgrade())

@@ -27,6 +27,8 @@ namespace Presentation.Gameplay.Views
         private Label? _buildingNameLabel;
         private Label? _buildingLevelLabel;
 
+        private readonly CompositeDisposable _buildingSubscriptions = new();
+
         /// <inheritdoc/>
         protected override void InitializeElements()
         {
@@ -36,6 +38,7 @@ namespace Presentation.Gameplay.Views
             this._buildingLevelLabel = this.Root.Q<Label>("BuildingLevel");
         }
 
+        /// <inheritdoc/>
         public override void Awake()
         {
             base.Awake();
@@ -47,6 +50,7 @@ namespace Presentation.Gameplay.Views
             this.UnregisterCallbacks();
             this._onUpgradeClicked.Dispose();
             this._onRemoveClicked.Dispose();
+            this._buildingSubscriptions.Dispose();
         }
 
         private void RegisterCallbacks()
@@ -74,17 +78,34 @@ namespace Presentation.Gameplay.Views
         /// <inheritdoc/>
         public void Show(BuildingModel building)
         {
+            this._buildingSubscriptions.Clear();
+
             if (this._buildingNameLabel != null)
             {
                 this._buildingNameLabel.text = building.Type.ToString();
             }
 
-            if (this._buildingLevelLabel != null)
-            {
-                this._buildingLevelLabel.text = $"Уровень: {building.CurrentLevel.CurrentValue}";
-            }
+            building.CurrentLevel
+                .Subscribe(level =>
+                {
+                    if (this._buildingLevelLabel != null)
+                    {
+                        this._buildingLevelLabel.text = $"Уровень: {level}";
+                    }
+
+                    bool isMaxLevel = level >= building.Levels.Count;
+                    this._upgradeButton?.SetEnabled(!isMaxLevel);
+                })
+                .AddTo(this._buildingSubscriptions);
 
             base.Show();
+        }
+
+        /// <inheritdoc/>
+        public override void Hide()
+        {
+            base.Hide();
+            this._buildingSubscriptions.Clear();
         }
     }
 }

@@ -52,7 +52,7 @@ namespace UseCases.Gameplay
             List<BuildingStateDTO> buildingStates = cityGrid.Buildings
                 .Select(b => new BuildingStateDTO
                 {
-                    Id = b.Id,
+                    Id = b.Id.ToString(),
                     Type = b.Type,
                     Level = b.CurrentLevel.CurrentValue,
                     Position = b.Position.CurrentValue

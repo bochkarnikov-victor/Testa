@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using ContractsInterfaces.UseCasesGameplay;
+using Domain.Gameplay.MessagesDTO;
 using Domain.Gameplay.Models;
+using MessagePipe;
 using R3;
 using Serilog;
 
@@ -16,16 +18,16 @@ namespace UseCases.Gameplay
     {
         private readonly IPlayerResourcesRepository _repository;
         private readonly ILogger _logger;
+        private readonly IPublisher<ResourcesChangedEvent> _resourcesChangedPublisher;
 
         /// <summary>
         /// Инициализирует новый экземпляр <see cref="ResourceManagerUseCase"/>.
         /// </summary>
-        /// <param name="repository">Репозиторий для доступа к модели ресурсов.</param>
-        /// <param name="logger">Интерфейс для логирования.</param>
-        public ResourceManagerUseCase(IPlayerResourcesRepository repository, ILogger logger)
+        public ResourceManagerUseCase(IPlayerResourcesRepository repository, ILogger logger, IPublisher<ResourcesChangedEvent> resourcesChangedPublisher)
         {
             this._repository = repository;
             this._logger = logger.ForContext<ResourceManagerUseCase>();
+            this._resourcesChangedPublisher = resourcesChangedPublisher;
         }
 
         /// <inheritdoc />
@@ -64,6 +66,7 @@ namespace UseCases.Gameplay
                     this._logger.Error("[ResourceManagerUseCase.Spend] Attempted to spend non-existent resource {ResourceType}", resourceType);
                 }
             }
+            this.PublishChanges();
         }
 
         /// <inheritdoc />
@@ -73,9 +76,12 @@ namespace UseCases.Gameplay
             foreach (ResourceType resourceType in income.GetResourceTypes())
             {
                 int earnedAmount = income.GetIncome(resourceType);
+                if (earnedAmount == 0) continue;
+                
                 ReactiveProperty<int> resource = this._repository.GetOrCreate(resourceType);
                 resource.Value += earnedAmount;
             }
+            this.PublishChanges();
         }
 
         /// <inheritdoc />
@@ -100,6 +106,12 @@ namespace UseCases.Gameplay
             }
 
             return currentResources;
+        }
+        
+        private void PublishChanges()
+        {
+            IReadOnlyDictionary<ResourceType, int> currentResources = this.GetCurrentResources();
+            this._resourcesChangedPublisher.Publish(new ResourcesChangedEvent(currentResources));
         }
     }
 }
