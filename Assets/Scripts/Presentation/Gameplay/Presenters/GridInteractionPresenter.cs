@@ -64,7 +64,6 @@ namespace Presentation.Gameplay.Presenters
 
         private void EnterBuildMode(BuildingType buildingType)
         {
-            Debug.Log("Place");
             if (buildingType == BuildingType.None)
             {
                 return;
